@@ -27,15 +27,47 @@ git pull origin master
 
 ## Permission denied
 
+
+
+### * could not create   : Permission denied
+
+
+
+ fatal: could not create work tree dir ‘xxxx’: Permission denied
+
+​                                      https://blog.csdn.net/one_girl/article/details/82887067
+
+```
+git clone --recursive git://github.com/isaacs/npm.git
+1
+```
+
+在执行上面命令从git上clone的时候报了错误，报这个错误的原因就是正在写入或者克隆git仓库的目录没有写入的权限。
+
+```
+fatal: could not create work tree dir 'npm': Permission denied
+1
+```
+
+解决办法就是先修改目录的权限然后在进行操作
+
+```
+$ cd ../    （回退到当前目录的上一级）
+$ sudo chmod o+w dirname  （dirname为当前目录的名字）
+12
+```
+
+如果有密码的可能会提醒你输入密码，然后就可以重新执行git clone命令了*
+
+
+
+
+
+### **git add .的时候会出现"Permission denied"**
+
 https://blog.csdn.net/double_lee3/article/details/90241989
 
 开了另外一个账户，导致在git add .的时候会出现"Permission denied"的错误，这是由于公钥失效的问题导致的，要重新添加一个公钥进去。
-
-
-
-
-
-
 
 
 
@@ -43,3 +75,87 @@ https://blog.csdn.net/double_lee3/article/details/90241989
 
 
 
+## fatal: HTTP request failed
+
+https://blog.csdn.net/shixiaoxiao2016/article/details/79925550
+
+**第一种报错：**
+
+fatal: HTTP request failed
+
+
+
+解决一：
+
+
+
+ 执行#git config --global http.sslVerify false
+
+解决二：
+
+由于Git的版本太低导致，更新Git版本即可。
+
+1、查看当前git版本：git --version
+
+查看最新版git：访问https://www.kernel.org/pub/software/scm/git/或者https://github.com/git/git/releases
+
+2、官网下载：
+wget
+https://Github.com/Git/Git/archive/v2.11.0.tar.gz
+（建议本机迅雷下载rz到服务器,安装yum install lrzsz后rz即可）
+解压：tar -zxvf git-2.11.0.tar.gz
+3、cd git-2.11.0
+4、移除旧版本git：yum remove git
+5、make configure
+如果报错/bin/sh: autoconf: command not found：
+安装libtool即可：yum install install autoconf automake libtool
+正常会打印：GEN configure
+执行
+6、./configure --prefix=/usr/local/git --with-iconv =/usr/local/lib（建议优先尝试后者）
+或者
+./configure --prefix=/usr/local/git --with-iconv --with-curl --with-expat=/usr/local/lib（如果没有安装libiconv请自行安装）
+make && make install
+①如果报错：cache.h:40:18: fatal error: zlib.h: No such file or directory
+安装zlib：yum install zlib、yum install zlib-devel
+②如果报错：make[1]: *** [perl.mak] Error 2
+安装：yum install perl-ExtUtils-MakeMaker package
+7、echo "export PATH=$PATH:/usr/local/git/bin" >> /etc/bashrc
+8、source /etc/bashrc
+9、git --version
+编译git时报错： zlib.h: No such file or directory
+缺少 zlib的头文件， 开发包没装，
+yum install zlib （系统默认已经装上）
+yum install zlib-devel
+git clone时候提示fatal: Unable to find remote helper for 'https'
+yum install libcurl-devel
+然后按照上诉步骤重新安装编译git即可
+
+参考：https://blog.csdn.net/u010887744/article/details/53957613 https://blog.csdn.net/wpyily/article/details/48130515
+
+
+
+
+
+## fatal: unable to access目标地址
+
+**https://blog.csdn.net/shixiaoxiao2016/article/details/79925550**
+
+**第二种报错：**
+
+执行git clone提示“fatal: unable to access目标地址”
+
+```html
+# git clone https://github.com/open-falcon/scripts.git
+
+
+
+Cloning into 'scripts'...
+
+
+
+fatal: unable to access 'https://github.com/open-falcon/scripts.git/': SSL connect error
+```
+
+解决办法：把https改为git即可                                    
+
+## END
