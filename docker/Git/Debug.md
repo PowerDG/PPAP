@@ -25,7 +25,67 @@ git pull origin master
 
 
 
+### 重新输入用户名和密码
+
+$  git config --global --replace-all user.email "输入你的邮箱"
+
+$  git config --global --replace-all user.name "输入你的用户名"
+
+然后push  会提示重新输入用户名和密码
+
+
+
+作者：special_lily
+链接：https://www.jianshu.com/p/1f904566c8a2
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+### ？？3
+
+![img](Debug.assets/1200-20200806183241734.png)
+
+image.png
+
+cat .git/config
+
+
+
+![img](Debug.assets/1200-20200806183242747.png)
+
+image.png
+
+
+ git remote set-url origin [http://xxx.git](https://link.jianshu.com?t=http://xxx.git)
+
+![img](Debug.assets/1200.png)
+
+image.png
+
+
+
+OK！
+
 ## Permission denied
+
+### 有权限进行读、写、创建文件、删除文件等操作
+
+https://blog.csdn.net/songchunxiao1991/article/details/82629148
+
+Permission denied：
+
+出现的原因的是：没有权限进行读、写、创建文件、删除文件等操作。
+
+![img](Debug.assets/70.png)
+
+解决方法：输入命令 sudo chmod -R 777  /工作目录，
+
+例如：sudo chmode -R 777 /home/HDD，此时就可以在该路径下进行一系列的操作。
+
+sudo：是linux系统管理指令，是允许系统管理员让普通用户执行一些或者全部的root命令的一个工具。
+
+-R：是指几连医用到目录里所有子目录和文件；
+
+777：是指所有用户都拥有的最高权限。
 
 
 
