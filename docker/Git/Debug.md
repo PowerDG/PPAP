@@ -67,7 +67,143 @@ OK！
 
 ## Permission denied
 
-### 有权限进行读、写、创建文件、删除文件等操作
+### 是ssh密匙的问题。
+
+https://blog.csdn.net/qq_38656557/article/details/84615529
+
+在学习git的时候，发现使用
+
+```
+git push -u origin master
+```
+
+命令推送到远程库的时候出现了Permission denied的问题。
+
+经过查询资料，是ssh密匙的问题。
+
+解决方法：本机生成密匙，github添加密匙。
+
+首先，使用
+
+```bash
+ssh-keygen -t rsa -b 2048 -C "你的邮箱"
+```
+
+生成密匙，在本地C:\Users\你的用户名.ssh生成文件夹，里面有id_rsa和id_rsa.pub两个文件。
+
+将id_rsa.pub里的复制到github里建立密匙即可。
+
+```
+git remote add origin_new 新的地址 
+
+
+
+git remote –v查看 
+
+
+
+git push origin_new master重新推送
+```
+
+
+
+### [ 【一种方式是使用ssh方式  使用git clone 出现 Permission denied 解决办法        ](https://www.cnblogs.com/jayworld/p/10419985.html)
+
+从git复制项目到本地的一种方式是使用ssh方式，即在git bash中运行命令：git clone git@github.com:***.git
+
+此种方式下载代码到本地的时候，可能出现Permission denied，原因在于此种方式依赖ssh key，SSH key可能失效或不存在。尝试以下步骤重新创建就可以解决。
+
+ 
+
+\1. 检查本地ssh key是否存在
+
+打开git bash，输入以下命令检查ssh key是否存在
+
+```
+ls` `~/.``ssh``/
+```
+
+若存在，跳过步骤2，不存在则执行步骤2。
+
+ 
+
+\2. 生成ssh key
+
+在git bash中执行以下命令
+
+```
+ssh``-keygen -t rsa -b 2048 -C ``"自己的邮箱地址"
+```
+
+若出现　
+
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/***/.ssh/id_rsa):
+
+***代表当前登录用户名，不做修改直接回车，会将生成的rsa文件保存为默认名称
+
+回车之后提示
+
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+
+提示设置提交/l拉取代码到Github时需要的密码及确认密码；
+
+设置密码后再次回车提示Your identification has been saved in.... 即表示ssh key生成成功；
+
+ 
+
+\3. 添加ssh key至ssh-agent
+
+执行以下命令
+
+`eval` ````ssh``-agent``
+
+如果返回以下表示启用中
+
+![img](Debug.assets/970132-20190222182009633-576252170.png)
+
+ 
+
+执行以下命令添加ssh key至ssh-agent
+
+```
+ssh``-add ~/.``ssh``/id_rsa
+```
+
+此步会要求输入步骤二设置的密码，输入密码后会出现
+
+![img](Debug.assets/970132-20190222182103750-516549094.png)
+
+ 
+
+此步若是报错：
+
+![img](Debug.assets/970132-20190222181750171-1572248316.png)
+
+可以尝试关掉当前git bash窗口，重新以管理员身份运行git bash 
+
+ 
+
+\4. 添加ssh key至guthub
+
+登录https://github.com/，在页面右上角自己头像右边箭头处右击，弹框中进入setting功能；
+
+setting界面右边菜单选择SSH and GPG keys，选择新建SSH keys，
+
+保存即可；
+
+ 
+
+完成以上步骤就可以使用ssh方式，用命令git clone git@github.com:***.git的形式下载项目到本地了。
+
+ 
+
+​    分类:             [Git](
+
+
+
+### =有权限进行读、写、创建文件、删除文件等操作
 
 https://blog.csdn.net/songchunxiao1991/article/details/82629148
 
@@ -89,7 +225,7 @@ sudo：是linux系统管理指令，是允许系统管理员让普通用户执�
 
 
 
-### * could not create   : Permission denied
+### =could not create   : Permission denied
 
 
 
@@ -123,7 +259,7 @@ $ sudo chmod o+w dirname  （dirname为当前目录的名字）
 
 
 
-### **git add .的时候会出现"Permission denied"**
+### **=git add .的时候会出现"Permission denied"**
 
 https://blog.csdn.net/double_lee3/article/details/90241989
 
@@ -132,6 +268,8 @@ https://blog.csdn.net/double_lee3/article/details/90241989
 
 
 先进去ssh文件位置cd~/.ssh，然后重新创建公钥ssh-kengen -t rsa -C "你的邮箱"，然后一路enter下去，最好换个名字，我的是123456随意，
+
+https://www.cnblogs.com/jayworld/category/1358597.html)
 
 
 
