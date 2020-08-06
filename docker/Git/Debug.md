@@ -1,3 +1,7 @@
+
+
+## 提交冲突
+
 https://blog.csdn.net/weixin_42288182/article/details/96568718
 
 
@@ -14,4 +18,28 @@ https://blog.csdn.net/weixin_42288182/article/details/96568718
 ```
 git pull origin master
 ```
+
+
+
+## Authentication failed for 解决办法
+
+
+
+## Permission denied
+
+https://blog.csdn.net/double_lee3/article/details/90241989
+
+开了另外一个账户，导致在git add .的时候会出现"Permission denied"的错误，这是由于公钥失效的问题导致的，要重新添加一个公钥进去。
+
+
+
+
+
+
+
+
+
+先进去ssh文件位置cd~/.ssh，然后重新创建公钥ssh-kengen -t rsa -C "你的邮箱"，然后一路enter下去，最好换个名字，我的是123456随意，
+
+
 
