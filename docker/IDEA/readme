@@ -14,3 +14,8 @@ KNBB2QUUR1-eyJsaWNlbnNlSWQiOiJLTkJCMlFVVVIxIiwibGljZW5zZWVOYW1lIjoiZ2hib2tlIiwiY
 1
 	
 https://fls.jetbrains-agent.com
+
+
+
+-javaagent:/Users/powerdg/jetbrains-agent.jar
+-javaagent:/Applications/PyCharm.app/Contents/bin/jetbrains-agent.jar
