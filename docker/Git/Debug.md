@@ -21,6 +21,31 @@ git pull origin master
 
 
 
+## 冲突Check out, review, and merge locally
+
+```
+git fetch git@gitlab.tuhu.cn:wangshuxin/Tuhu.Service.OrderSplit2019.git costLiner
+git checkout -b wangshuxin/Tuhu.Service.OrderSplit2019-costLiner FETCH_HEAD
+```
+
+
+
+
+
+
+
+```
+git checkout dev
+git merge --no-ff wangshuxin/Tuhu.Service.OrderSplit2019-costLiner
+```
+
+```
+git checkout dev
+git merge --no-ff wangshuxin/Tuhu.Service.OrderSplit2019-costLiner
+```
+
+
+
 ## Authentication failed for 解决办法
 
 
